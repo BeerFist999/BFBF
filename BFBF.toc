@@ -1,0 +1,18 @@
+## Interface: 120007
+## Title: BFBF
+## Notes: Independent Blizzard-style player and target unit frames.
+## Author: BeerFist999
+## Version: 0.1.0-foundation
+
+Core/Init.lua
+Core/Defaults.lua
+Media/Media.lua
+Elements/Health.lua
+Elements/Power.lua
+Elements/Text.lua
+Elements/Portrait.lua
+Layouts/Player.lua
+Layouts/Target.lua
+Frames/Player.lua
+Frames/Target.lua
+Core/Events.lua

@@ -14,12 +14,21 @@ end
 
 function Power:Update(root)
     local unit = root.unit
+
+    if not UnitExists(unit) then
+        root.PowerBar:SetMinMaxValues(0, 1)
+        root.PowerBar:SetValue(0)
+        return
+    end
+
     local powerType, powerToken = UnitPowerType(unit)
-    local current = UnitPower(unit, powerType) or 0
-    local maximum = UnitPowerMax(unit, powerType) or 0
+    local current = UnitPower(unit, powerType)
+    local maximum = UnitPowerMax(unit, powerType)
     local color = PowerBarColor and (PowerBarColor[powerType] or PowerBarColor[powerToken])
 
-    root.PowerBar:SetMinMaxValues(0, maximum > 0 and maximum or 1)
+    -- Power values can be secret on current Retail clients. Pass them only
+    -- through native StatusBar APIs; do not inspect or calculate with them.
+    root.PowerBar:SetMinMaxValues(0, maximum)
     root.PowerBar:SetValue(current)
 
     if color then
@@ -27,6 +36,4 @@ function Power:Update(root)
     else
         root.PowerBar:SetStatusBarColor(0.25, 0.45, 0.90)
     end
-
-    return current, maximum
 end

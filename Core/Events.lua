@@ -19,8 +19,8 @@ local function refreshFrame(root)
 
     BFBF.Elements.Portrait:Update(root)
     BFBF.Elements.Health:Update(root)
-    local powerCurrent, powerMaximum = BFBF.Elements.Power:Update(root)
-    BFBF.Elements.Text:Update(root, powerCurrent, powerMaximum)
+    BFBF.Elements.Power:Update(root)
+    BFBF.Elements.Text:Update(root)
 end
 
 function Events:RefreshAll()

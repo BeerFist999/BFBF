@@ -19,13 +19,15 @@ function Text:Create(root)
     root.Level = createFontString(root, "RIGHT")
 end
 
-function Text:Update(root, healthCurrent, healthMaximum, powerCurrent, powerMaximum)
+function Text:Update(root, powerCurrent, powerMaximum)
     local unit = root.unit
     local name = UnitName(unit)
     local level = UnitLevel(unit)
 
     root.Name:SetText(name or "")
     root.Level:SetText(level and level > 0 and level or "??")
-    root.HealthText:SetText(string.format("%d / %d", healthCurrent or 0, healthMaximum or 0))
+    -- Health values may be secret. Health text remains intentionally blank
+    -- until a native secret-safe text path is introduced.
+    root.HealthText:SetText("")
     root.PowerText:SetText(string.format("%d / %d", powerCurrent or 0, powerMaximum or 0))
 end

@@ -15,10 +15,19 @@ end
 
 function Health:Update(root)
     local unit = root.unit
-    local current = UnitHealth(unit) or 0
-    local maximum = UnitHealthMax(unit) or 0
 
-    root.HealthBar:SetMinMaxValues(0, maximum > 0 and maximum or 1)
+    if not UnitExists(unit) then
+        root.HealthBar:SetMinMaxValues(0, 1)
+        root.HealthBar:SetValue(0)
+        return
+    end
+
+    local current = UnitHealth(unit)
+    local maximum = UnitHealthMax(unit)
+
+    -- Health values can be secret on current Retail clients. Pass them only
+    -- through native StatusBar APIs; do not inspect or calculate with them.
+    root.HealthBar:SetMinMaxValues(0, maximum)
     root.HealthBar:SetValue(current)
 
     local red, green, blue = UnitSelectionColor(unit)
@@ -27,6 +36,4 @@ function Health:Update(root)
     else
         root.HealthBar:SetStatusBarColor(unpack(BFBF.Media.healthColor))
     end
-
-    return current, maximum
 end

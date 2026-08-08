@@ -6,9 +6,19 @@ BFBF.Elements.Power = Power
 function Power:Create(root)
     local bar = CreateFrame("StatusBar", nil, root)
     bar:SetStatusBarTexture(BFBF.Media.statusBarTexture)
+    bar:GetStatusBarTexture():SetAtlas(
+        root.unit == "player" and BFBF.Media.atlas.playerPower or BFBF.Media.atlas.targetPower
+    )
     bar:SetMinMaxValues(0, 1)
     bar:SetValue(0)
+
+    local background = bar:CreateTexture(nil, "BACKGROUND")
+    background:SetAllPoints(bar)
+    background:SetTexture(BFBF.Media.statusBarTexture)
+    background:SetVertexColor(0, 0, 0, 0.65)
+
     root.PowerBar = bar
+    root.PowerBackground = background
     return bar
 end
 

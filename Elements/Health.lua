@@ -6,10 +6,20 @@ BFBF.Elements.Health = Health
 function Health:Create(root)
     local bar = CreateFrame("StatusBar", nil, root)
     bar:SetStatusBarTexture(BFBF.Media.statusBarTexture)
+    bar:GetStatusBarTexture():SetAtlas(
+        root.unit == "player" and BFBF.Media.atlas.playerHealth or BFBF.Media.atlas.targetHealth
+    )
     bar:SetStatusBarColor(unpack(BFBF.Media.healthColor))
     bar:SetMinMaxValues(0, 1)
     bar:SetValue(1)
+
+    local background = bar:CreateTexture(nil, "BACKGROUND")
+    background:SetAllPoints(bar)
+    background:SetTexture(BFBF.Media.statusBarTexture)
+    background:SetVertexColor(0, 0, 0, 0.65)
+
     root.HealthBar = bar
+    root.HealthBackground = background
     return bar
 end
 

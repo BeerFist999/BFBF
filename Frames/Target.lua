@@ -21,6 +21,9 @@ function Target:Create()
     BFBF.Elements.Power:Create(root)
     BFBF.Elements.Text:Create(root)
 
+    root.FrameArt = root:CreateTexture(nil, "ARTWORK")
+    root.FrameArt:SetAtlas(BFBF.Media.atlas.targetFrame)
+
     root.ApplyLayout = function(frame)
         BFBF.Layouts.Target:Apply(frame)
     end

@@ -5,37 +5,35 @@ BFBF.Layouts.Player = Layout
 
 function Layout:Apply(root)
     local width, height = root:GetSize()
-    local padding = math.max(8, math.floor(height * 0.08))
-    local portraitSize = math.max(36, math.min(60, height - (padding * 2)))
-    local contentLeft = padding + portraitSize + padding
-    local contentWidth = math.max(40, width - contentLeft - padding)
-    local titleHeight = 14
-    local topInset = math.max(18, math.floor(height * 0.20))
-    local healthHeight = math.max(16, math.floor(height * 0.20))
-    local powerHeight = math.max(7, math.floor(height * 0.08))
+    local scaleX = width / 232
+    local scaleY = height / 100
+    local portraitScale = math.min(scaleX, scaleY)
 
     root.Background:ClearAllPoints()
     root.Background:SetAllPoints(root)
 
+    root.FrameArt:ClearAllPoints()
+    root.FrameArt:SetAllPoints(root)
+
     root.Portrait:ClearAllPoints()
-    root.Portrait:SetSize(portraitSize, portraitSize)
-    root.Portrait:SetPoint("LEFT", root, "LEFT", padding, 0)
+    root.Portrait:SetSize(60 * portraitScale, 60 * portraitScale)
+    root.Portrait:SetPoint("TOPLEFT", root, "TOPLEFT", 24 * scaleX, -19 * scaleY)
 
     root.Name:ClearAllPoints()
-    root.Name:SetSize(contentWidth - 28, titleHeight)
-    root.Name:SetPoint("TOPLEFT", root, "TOPLEFT", contentLeft, -padding)
+    root.Name:SetSize(96 * scaleX, 12 * scaleY)
+    root.Name:SetPoint("TOPLEFT", root, "TOPLEFT", 88 * scaleX, -27 * scaleY)
 
     root.Level:ClearAllPoints()
-    root.Level:SetSize(28, titleHeight)
-    root.Level:SetPoint("TOPRIGHT", root, "TOPRIGHT", -padding, -padding)
+    root.Level:SetSize(24 * scaleX, 14 * scaleY)
+    root.Level:SetPoint("TOPRIGHT", root, "TOPRIGHT", -24.5 * scaleX, -27 * scaleY)
 
     root.HealthBar:ClearAllPoints()
-    root.HealthBar:SetSize(contentWidth, healthHeight)
-    root.HealthBar:SetPoint("TOPLEFT", root, "TOPLEFT", contentLeft, -topInset)
+    root.HealthBar:SetSize(124 * scaleX, 19 * scaleY)
+    root.HealthBar:SetPoint("TOPLEFT", root, "TOPLEFT", 85 * scaleX, -40 * scaleY)
 
     root.PowerBar:ClearAllPoints()
-    root.PowerBar:SetSize(contentWidth, powerHeight)
-    root.PowerBar:SetPoint("TOPLEFT", root.HealthBar, "BOTTOMLEFT", 0, -2)
+    root.PowerBar:SetSize(124 * scaleX, 10 * scaleY)
+    root.PowerBar:SetPoint("TOPLEFT", root, "TOPLEFT", 85 * scaleX, -61 * scaleY)
 
     root.HealthText:ClearAllPoints()
     root.HealthText:SetAllPoints(root.HealthBar)

@@ -3,20 +3,21 @@ local _, BFBF = ...
 local Text = {}
 BFBF.Elements.Text = Text
 
-local function createFontString(root, justifyH)
-    local text = root:CreateFontString(nil, "OVERLAY", BFBF.Media.font)
-    text:SetFontObject(BFBF.Media.font)
+local function createFontString(root, justifyH, fontObject, size)
+    local text = root:CreateFontString(nil, "OVERLAY", fontObject)
     text:SetJustifyH(justifyH)
     text:SetJustifyV("MIDDLE")
-    text:SetFont(text:GetFont(), 12)
+    text:SetFont(text:GetFont(), size)
     return text
 end
 
 function Text:Create(root)
-    root.Name = createFontString(root, "LEFT")
-    root.HealthText = createFontString(root, "RIGHT")
-    root.PowerText = createFontString(root, "RIGHT")
-    root.Level = createFontString(root, "RIGHT")
+    root.Name = createFontString(root, "LEFT", "GameFontNormalSmall", 12)
+    root.HealthText = createFontString(root, "RIGHT", "GameFontNormalSmall", 12)
+    root.PowerText = createFontString(root, "RIGHT", "GameFontNormalSmall", 12)
+    root.Level = createFontString(root, "RIGHT", "GameNormalNumberFont", 12)
+    root.Name:SetTextColor(1, 1, 1)
+    root.Level:SetTextColor(1, 0.82, 0)
 end
 
 function Text:Update(root)

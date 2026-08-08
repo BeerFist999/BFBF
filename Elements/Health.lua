@@ -43,7 +43,13 @@ function Health:Update(root)
     local red, green, blue = UnitSelectionColor(unit)
     if red then
         root.HealthBar:SetStatusBarColor(red, green, blue)
+        if root.FrameAccent then
+            root.FrameAccent:SetVertexColor(red, green, blue)
+        end
     else
         root.HealthBar:SetStatusBarColor(unpack(BFBF.Media.healthColor))
+        if root.FrameAccent then
+            root.FrameAccent:SetVertexColor(1, 1, 1)
+        end
     end
 end

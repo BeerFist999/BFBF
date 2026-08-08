@@ -12,10 +12,6 @@ function Player:Create()
     root:SetPoint(defaults.point, UIParent, defaults.relativePoint, defaults.offsetX, defaults.offsetY)
     root:SetFrameStrata("MEDIUM")
 
-    root.Background = root:CreateTexture(nil, "BACKGROUND")
-    root.Background:SetTexture(BFBF.Media.statusBarTexture)
-    root.Background:SetVertexColor(unpack(BFBF.Media.backgroundColor))
-
     BFBF.Elements.Portrait:Create(root)
     BFBF.Elements.Health:Create(root)
     BFBF.Elements.Power:Create(root)

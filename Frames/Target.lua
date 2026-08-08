@@ -12,10 +12,6 @@ function Target:Create()
     root:SetPoint(defaults.point, UIParent, defaults.relativePoint, defaults.offsetX, defaults.offsetY)
     root:SetFrameStrata("MEDIUM")
 
-    root.Background = root:CreateTexture(nil, "BACKGROUND")
-    root.Background:SetTexture(BFBF.Media.statusBarTexture)
-    root.Background:SetVertexColor(unpack(BFBF.Media.backgroundColor))
-
     BFBF.Elements.Portrait:Create(root)
     BFBF.Elements.Health:Create(root)
     BFBF.Elements.Power:Create(root)
@@ -23,6 +19,9 @@ function Target:Create()
 
     root.FrameArt = root:CreateTexture(nil, "ARTWORK")
     root.FrameArt:SetAtlas(BFBF.Media.atlas.targetFrame)
+
+    root.FrameAccent = root:CreateTexture(nil, "ARTWORK", nil, 1)
+    root.FrameAccent:SetAtlas(BFBF.Media.atlas.targetType, TextureKitConstants.UseAtlasSize)
 
     root.ApplyLayout = function(frame)
         BFBF.Layouts.Target:Apply(frame)

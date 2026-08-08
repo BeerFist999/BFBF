@@ -9,9 +9,6 @@ function Layout:Apply(root)
     local scaleY = height / 100
     local portraitScale = math.min(scaleX, scaleY)
 
-    root.Background:ClearAllPoints()
-    root.Background:SetAllPoints(root)
-
     root.FrameArt:ClearAllPoints()
     root.FrameArt:SetAllPoints(root)
 
@@ -25,7 +22,7 @@ function Layout:Apply(root)
 
     root.Level:ClearAllPoints()
     root.Level:SetSize(24 * scaleX, 14 * scaleY)
-    root.Level:SetPoint("TOPRIGHT", root, "TOPRIGHT", -24.5 * scaleX, -27 * scaleY)
+    root.Level:SetPoint("TOPRIGHT", root, "TOPRIGHT", -24.5 * scaleX, -28 * scaleY)
 
     root.HealthBar:ClearAllPoints()
     root.HealthBar:SetSize(124 * scaleX, 19 * scaleY)

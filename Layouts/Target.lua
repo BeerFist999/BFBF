@@ -8,9 +8,7 @@ function Layout:Apply(root)
     local scaleX = width / 232
     local scaleY = height / 100
     local portraitScale = math.min(scaleX, scaleY)
-
-    root.Background:ClearAllPoints()
-    root.Background:SetAllPoints(root)
+    local accentScale = math.min(scaleX, scaleY)
 
     root.FrameArt:ClearAllPoints()
     root.FrameArt:SetAllPoints(root)
@@ -19,13 +17,17 @@ function Layout:Apply(root)
     root.Portrait:SetSize(58 * portraitScale, 58 * portraitScale)
     root.Portrait:SetPoint("TOPRIGHT", root, "TOPRIGHT", -26 * scaleX, -19 * scaleY)
 
+    root.FrameAccent:ClearAllPoints()
+    root.FrameAccent:SetScale(accentScale)
+    root.FrameAccent:SetPoint("TOPRIGHT", root, "TOPRIGHT", -75 * scaleX, -25 * scaleY)
+
     root.Name:ClearAllPoints()
     root.Name:SetSize(90 * scaleX, 12 * scaleY)
-    root.Name:SetPoint("TOPLEFT", root, "TOPLEFT", 42 * scaleX, -26 * scaleY)
+    root.Name:SetPoint("TOPLEFT", root.FrameAccent, "TOPRIGHT", -106 * scaleX, -1 * scaleY)
 
     root.Level:ClearAllPoints()
     root.Level:SetSize(22 * scaleX, 14 * scaleY)
-    root.Level:SetPoint("TOPLEFT", root, "TOPLEFT", 20 * scaleX, -27 * scaleY)
+    root.Level:SetPoint("TOPLEFT", root.FrameAccent, "TOPRIGHT", -133 * scaleX, -2 * scaleY)
 
     root.HealthBar:ClearAllPoints()
     root.HealthBar:SetSize(126 * scaleX, 20 * scaleY)

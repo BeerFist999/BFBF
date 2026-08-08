@@ -10,6 +10,7 @@ BFBF.Media.font = "GameFontNormalSmall"
 BFBF.Media.atlas = {
     playerFrame = "UI-HUD-UnitFrame-Player-PortraitOn",
     targetFrame = "UI-HUD-UnitFrame-Target-PortraitOn",
+    targetType = "UI-HUD-UnitFrame-Target-PortraitOn-Type",
     playerHealth = "UI-HUD-UnitFrame-Player-PortraitOn-Bar-Health",
     targetHealth = "UI-HUD-UnitFrame-Target-PortraitOn-Bar-Health",
     playerPower = "UI-HUD-UnitFrame-Player-PortraitOn-Bar-Mana",

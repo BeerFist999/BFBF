@@ -9,10 +9,14 @@ function Portrait:Create(root)
 
     if root.unit == "player" then
         mask:SetAtlas(BFBF.Media.atlas.playerPortraitMask)
+        mask:SetAllPoints(texture)
     else
         mask:SetAtlas(BFBF.Media.atlas.targetPortraitMask)
+        -- TargetFrame.xml offsets the circular mask by one pixel at the
+        -- top/right edge rather than using an unmodified all-points mask.
+        mask:SetPoint("TOPLEFT", texture, "TOPLEFT", 0, -1)
+        mask:SetPoint("BOTTOMRIGHT", texture, "BOTTOMRIGHT", -1, 0)
     end
-    mask:SetAllPoints(texture)
     texture:AddMaskTexture(mask)
 
     root.Portrait = texture

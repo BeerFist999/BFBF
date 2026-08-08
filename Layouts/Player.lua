@@ -26,7 +26,7 @@ function Layout:Apply(root)
 
     root.HealthBar:ClearAllPoints()
     root.HealthBar:SetSize(124 * scaleX, 19 * scaleY)
-    root.HealthBar:SetPoint("TOPLEFT", root, "TOPLEFT", 85 * scaleX, -40 * scaleY)
+    root.HealthBar:SetPoint("TOPLEFT", root, "TOPLEFT", 85 * scaleX, -41 * scaleY)
 
     root.PowerBar:ClearAllPoints()
     root.PowerBar:SetSize(124 * scaleX, 10 * scaleY)

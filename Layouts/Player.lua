@@ -12,21 +12,29 @@ local POWER_HEIGHT = 10
 local BAR_GAP = 1
 local RIGHT_INSET = 23
 local MIN_BAR_WIDTH = 40
+local OUTER_PADDING = 4
 
 function Layout:Apply(root)
     local width, height = root:GetSize()
-    local portraitSize = math.min(PORTRAIT_SIZE, height - 8)
-    local portraitTop = math.min(PORTRAIT_TOP, math.max(4, (height - portraitSize) / 2))
+    local portraitSize = math.min(PORTRAIT_SIZE, height - (OUTER_PADDING * 2))
+    local portraitTop = math.min(PORTRAIT_TOP, math.max(OUTER_PADDING, (height - portraitSize) / 2))
     local barLeft = PORTRAIT_LEFT + portraitSize + 1
-    local barWidth = math.max(MIN_BAR_WIDTH, width - barLeft - RIGHT_INSET)
+    local barRight = width - RIGHT_INSET
+    local barWidth = math.max(MIN_BAR_WIDTH, barRight - barLeft)
     local totalBarHeight = HEALTH_HEIGHT + BAR_GAP + POWER_HEIGHT
-    local healthTop = math.max(4, math.min(height - totalBarHeight - 4, 41 + ((height - BASE_HEIGHT) / 2)))
-    local nameTop = math.max(4, healthTop - 14)
-    local artScale = math.min(1, width / BASE_WIDTH, height / BASE_HEIGHT)
+    local healthTop = math.max(
+        OUTER_PADDING,
+        math.min(height - totalBarHeight - OUTER_PADDING, 41 + ((height - BASE_HEIGHT) / 2))
+    )
+    local nameTop = math.max(OUTER_PADDING, healthTop - 14)
 
-    root.FrameArt:ClearAllPoints()
-    root.FrameArt:SetScale(artScale)
-    root.FrameArt:SetPoint("TOPLEFT", root, "TOPLEFT")
+    BFBF.Media:ApplyScalableFrameArt(root, {
+        width = width,
+        height = height,
+        panelLeft = barLeft - 3,
+        panelRight = barRight + 1,
+        dividerX = barLeft - 5,
+    })
 
     root.Portrait:ClearAllPoints()
     root.Portrait:SetSize(portraitSize, portraitSize)

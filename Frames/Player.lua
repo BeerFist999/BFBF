@@ -18,8 +18,11 @@ function Player:Create()
     BFBF.Elements.Power:Create(root)
     BFBF.Elements.Text:Create(root)
 
+    -- This exact Blizzard atlas remains the 232x100 baseline. Larger or
+    -- shorter frames use the separate scalable composition below instead.
     root.FrameArt = root:CreateTexture(nil, "BACKGROUND")
     root.FrameArt:SetAtlas(BFBF.Media.atlas.playerFrame, TextureKitConstants.UseAtlasSize)
+    BFBF.Media:CreateScalableFrameArt(root, "player")
 
     root.ApplyLayout = function(frame)
         BFBF.Layouts.Player:Apply(frame)

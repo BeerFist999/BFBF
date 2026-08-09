@@ -5,10 +5,10 @@ BFBF.Elements.Health = Health
 
 function Health:Create(root)
     local bar = CreateFrame("StatusBar", nil, root)
+    -- Use Blizzard's neutral status-bar texture. The UnitFrame bar atlases
+    -- are already coloured artwork, so tinting them a second time produces
+    -- incorrect health colours on custom BFBF geometry.
     bar:SetStatusBarTexture(BFBF.Media.statusBarTexture)
-    bar:GetStatusBarTexture():SetAtlas(
-        root.unit == "player" and BFBF.Media.atlas.playerHealth or BFBF.Media.atlas.targetHealth
-    )
     bar:SetStatusBarColor(unpack(BFBF.Media.healthColor))
     bar:SetMinMaxValues(0, 1)
     bar:SetValue(1)

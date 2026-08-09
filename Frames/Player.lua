@@ -11,14 +11,15 @@ function Player:Create()
     root:SetSize(settings.width, settings.height)
     root:SetPoint(settings.point, UIParent, settings.point, settings.x, settings.y)
     root:SetFrameStrata("MEDIUM")
+    root:SetClipsChildren(true)
 
     BFBF.Elements.Portrait:Create(root)
     BFBF.Elements.Health:Create(root)
     BFBF.Elements.Power:Create(root)
     BFBF.Elements.Text:Create(root)
 
-    root.FrameArt = root:CreateTexture(nil, "ARTWORK")
-    root.FrameArt:SetAtlas(BFBF.Media.atlas.playerFrame)
+    root.FrameArt = root:CreateTexture(nil, "BACKGROUND")
+    root.FrameArt:SetAtlas(BFBF.Media.atlas.playerFrame, TextureKitConstants.UseAtlasSize)
 
     root.ApplyLayout = function(frame)
         BFBF.Layouts.Player:Apply(frame)

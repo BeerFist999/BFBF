@@ -11,16 +11,17 @@ function Target:Create()
     root:SetSize(settings.width, settings.height)
     root:SetPoint(settings.point, UIParent, settings.point, settings.x, settings.y)
     root:SetFrameStrata("MEDIUM")
+    root:SetClipsChildren(true)
 
     BFBF.Elements.Portrait:Create(root)
     BFBF.Elements.Health:Create(root)
     BFBF.Elements.Power:Create(root)
     BFBF.Elements.Text:Create(root)
 
-    root.FrameArt = root:CreateTexture(nil, "ARTWORK")
-    root.FrameArt:SetAtlas(BFBF.Media.atlas.targetFrame)
+    root.FrameArt = root:CreateTexture(nil, "BACKGROUND")
+    root.FrameArt:SetAtlas(BFBF.Media.atlas.targetFrame, TextureKitConstants.UseAtlasSize)
 
-    root.FrameAccent = root:CreateTexture(nil, "ARTWORK", nil, 1)
+    root.FrameAccent = root:CreateTexture(nil, "BACKGROUND", nil, 1)
     root.FrameAccent:SetAtlas(BFBF.Media.atlas.targetType, TextureKitConstants.UseAtlasSize)
 
     root.ApplyLayout = function(frame)

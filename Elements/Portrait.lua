@@ -4,8 +4,10 @@ local Portrait = {}
 BFBF.Elements.Portrait = Portrait
 
 function Portrait:Create(root)
-    local texture = root:CreateTexture(nil, "BACKGROUND", nil, 1)
-    local mask = root:CreateMaskTexture(nil, "BACKGROUND", nil, 2)
+    -- Portraits are deliberately above frame art. The art atlas may be
+    -- constrained at non-baseline sizes, while the portrait remains visible.
+    local texture = root:CreateTexture(nil, "ARTWORK", nil, 1)
+    local mask = root:CreateMaskTexture(nil, "ARTWORK", nil, 2)
 
     if root.unit == "player" then
         mask:SetAtlas(BFBF.Media.atlas.playerPortraitMask)

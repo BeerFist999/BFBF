@@ -4,12 +4,12 @@ local Player = {}
 BFBF.Frames.Player = Player
 
 function Player:Create()
-    local defaults = BFBF.Defaults.Player
+    local settings = BFBF.Settings:GetFrameData("Player")
     local root = CreateFrame("Frame", "BFBF_Player", UIParent)
     root.unit = "player"
 
-    root:SetSize(defaults.width, defaults.height)
-    root:SetPoint(defaults.point, UIParent, defaults.relativePoint, defaults.offsetX, defaults.offsetY)
+    root:SetSize(settings.width, settings.height)
+    root:SetPoint(settings.point, UIParent, settings.point, settings.x, settings.y)
     root:SetFrameStrata("MEDIUM")
 
     BFBF.Elements.Portrait:Create(root)
@@ -25,6 +25,7 @@ function Player:Create()
     end
     root:SetScript("OnSizeChanged", root.ApplyLayout)
     root:ApplyLayout()
+    BFBF.Settings:AttachFrameControls(root, "Player")
     root:Show()
 
     return root

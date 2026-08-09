@@ -3,9 +3,11 @@
 ## Notes: Independent Blizzard-style player and target unit frames.
 ## Author: BeerFist999
 ## Version: 0.1.0-foundation
+## SavedVariables: BFBFDB
 
 Core/Init.lua
 Core/Defaults.lua
+Core/Settings.lua
 Media/Media.lua
 Elements/Health.lua
 Elements/Power.lua

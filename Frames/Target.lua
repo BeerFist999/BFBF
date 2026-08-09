@@ -4,12 +4,12 @@ local Target = {}
 BFBF.Frames.Target = Target
 
 function Target:Create()
-    local defaults = BFBF.Defaults.Target
+    local settings = BFBF.Settings:GetFrameData("Target")
     local root = CreateFrame("Frame", "BFBF_Target", UIParent)
     root.unit = "target"
 
-    root:SetSize(defaults.width, defaults.height)
-    root:SetPoint(defaults.point, UIParent, defaults.relativePoint, defaults.offsetX, defaults.offsetY)
+    root:SetSize(settings.width, settings.height)
+    root:SetPoint(settings.point, UIParent, settings.point, settings.x, settings.y)
     root:SetFrameStrata("MEDIUM")
 
     BFBF.Elements.Portrait:Create(root)
@@ -28,6 +28,7 @@ function Target:Create()
     end
     root:SetScript("OnSizeChanged", root.ApplyLayout)
     root:ApplyLayout()
+    BFBF.Settings:AttachFrameControls(root, "Target")
     root:Hide()
 
     return root
